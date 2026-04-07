@@ -1,0 +1,29 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# iOS Port (nicht Teil des Android-Repos)
+iOS-Port/
+iOS-Port.zip
+iOS-Briefing.md
+
+# Release-Artefakte (APK/AAB nicht ins Repo)
+app/release/
+
+# PHP-Cache (serverseitig, nicht relevant)
+linien/cache/
+
+# Claude Code lokale Einstellungen
+.claude/
