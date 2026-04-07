@@ -1,4 +1,4 @@
-# WienerLinien
+# Wien Abfahrt
 
 Eine inoffizielle Echtzeit-Abfahrtsmonitor-App für die Wiener Linien, gebaut mit Kotlin und Jetpack Compose.
 
@@ -43,7 +43,7 @@ Eine inoffizielle Echtzeit-Abfahrtsmonitor-App für die Wiener Linien, gebaut mi
 
 1. Repository klonen:
    ```bash
-   git clone https://github.com/DEIN-USERNAME/WienerLinien.git
+   git clone https://github.com/DEIN-USERNAME/WienAbfahrt.git
    ```
 2. In Android Studio öffnen
 3. Projekt bauen und auf Gerät/Emulator starten
