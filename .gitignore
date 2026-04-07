@@ -14,6 +14,9 @@
 .cxx
 local.properties
 
+# Claude Code Projektdokumentation
+CLAUDE.md
+
 # PHP Web App (separates Projekt)
 linien/
 
