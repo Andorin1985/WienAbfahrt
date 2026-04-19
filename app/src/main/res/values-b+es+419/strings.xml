@@ -60,4 +60,14 @@
     <string name="info_stats_stops">Paradas</string>
     <string name="info_stats_lines">Líneas</string>
     <string name="info_dev">Un desarrollo de habith.eu</string>
+    <string name="info_stop_id_lookup_button">Buscar IDs de parada</string>
+    <string name="info_stop_id_lookup_desc">Encontrar IDs de paradas para SmartHome, automatizaciones y más</string>
+    <string name="stop_id_lookup_title">Buscar IDs de parada</string>
+    <string name="stop_id_search_hint">Buscar una parada …</string>
+    <string name="stop_id_gps_button">Cercanas</string>
+    <string name="stop_id_gps_searching">Buscando paradas cercanas …</string>
+    <string name="stop_id_nearby_header">Paradas cercanas (hasta 500 m)</string>
+    <string name="stop_id_no_results">No se encontraron paradas.</string>
+    <string name="stop_id_distance_m">%1$d m</string>
+    <string name="stop_id_copied">ID de parada %1$s copiada</string>
 </resources>

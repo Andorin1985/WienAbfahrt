@@ -60,4 +60,14 @@
     <string name="info_stats_stops">Haltestellen</string>
     <string name="info_stats_lines">Linien</string>
     <string name="info_dev">Eine Entwicklung von habith.eu</string>
+    <string name="info_stop_id_lookup_button">Stop-IDs nachschlagen</string>
+    <string name="info_stop_id_lookup_desc">Haltestellen-IDs für SmartHome, Automatisierungen &amp; Co. finden</string>
+    <string name="stop_id_lookup_title">Stop-IDs nachschlagen</string>
+    <string name="stop_id_search_hint">Haltestelle suchen …</string>
+    <string name="stop_id_gps_button">In der Nähe</string>
+    <string name="stop_id_gps_searching">Haltestellen in der Nähe werden gesucht …</string>
+    <string name="stop_id_nearby_header">Haltestellen in der Nähe (bis 500 m)</string>
+    <string name="stop_id_no_results">Keine Haltestellen gefunden.</string>
+    <string name="stop_id_distance_m">%1$d m</string>
+    <string name="stop_id_copied">Stop-ID %1$s kopiert</string>
 </resources>

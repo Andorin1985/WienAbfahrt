@@ -60,4 +60,14 @@
     <string name="info_stats_stops">Stops</string>
     <string name="info_stats_lines">Lines</string>
     <string name="info_dev">A development by habith.eu</string>
+    <string name="info_stop_id_lookup_button">Look up Stop IDs</string>
+    <string name="info_stop_id_lookup_desc">Find stop IDs for SmartHome, automations &amp; more</string>
+    <string name="stop_id_lookup_title">Look up Stop IDs</string>
+    <string name="stop_id_search_hint">Search for a stop …</string>
+    <string name="stop_id_gps_button">Nearby</string>
+    <string name="stop_id_gps_searching">Searching nearby stops …</string>
+    <string name="stop_id_nearby_header">Stops nearby (up to 500 m)</string>
+    <string name="stop_id_no_results">No stops found.</string>
+    <string name="stop_id_distance_m">%1$d m</string>
+    <string name="stop_id_copied">Stop ID %1$s copied</string>
 </resources>

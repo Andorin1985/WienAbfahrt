@@ -113,7 +113,6 @@ fun DepartureScreen(vm: DepartureViewModel = viewModel()) {
                                     GpsErrorType.NO_STOP_FOUND -> stringResource(R.string.gps_no_stop_found)
                                     GpsErrorType.LOAD_ERROR    -> stringResource(R.string.gps_load_error)
                                     GpsErrorType.UNAVAILABLE   -> stringResource(R.string.gps_unavailable)
-                                    else -> ""
                                 },
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.error

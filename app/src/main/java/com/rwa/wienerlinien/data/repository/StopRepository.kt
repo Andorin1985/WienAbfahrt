@@ -82,6 +82,22 @@ class StopRepository(private val context: Context) {
             nearest?.let { Pair(it, minDist.toInt()) }
         }
 
+    suspend fun findNearby(
+        lat: Double,
+        lon: Double,
+        radiusMeters: Int = 500,
+        maxResults: Int = 20
+    ): List<Pair<Stop, Int>> = withContext(Dispatchers.Default) {
+        val stops = getStops() ?: return@withContext emptyList()
+        stops
+            .mapNotNull { stop ->
+                val d = haversine(lat, lon, stop.lat, stop.lon).toInt()
+                if (d <= radiusMeters) Pair(stop, d) else null
+            }
+            .sortedBy { it.second }
+            .take(maxResults)
+    }
+
     data class Stats(val stopCount: Int, val lineCount: Int)
 
     suspend fun getStats(): Stats? = withContext(Dispatchers.Default) {
