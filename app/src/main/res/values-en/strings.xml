@@ -70,4 +70,10 @@
     <string name="stop_id_no_results">No stops found.</string>
     <string name="stop_id_distance_m">%1$d m</string>
     <string name="stop_id_copied">Stop ID %1$s copied</string>
+    <string name="sheet_stops_title">All Stops</string>
+    <string name="sheet_stops_search_hint">Search for a stop …</string>
+    <string name="sheet_stops_count">%1$d stops</string>
+    <string name="sheet_lines_title">All Lines</string>
+    <string name="sheet_lines_search_hint">Search for a line …</string>
+    <string name="sheet_lines_count">%1$d lines</string>
 </resources>

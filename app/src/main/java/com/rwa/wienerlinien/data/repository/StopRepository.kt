@@ -98,6 +98,27 @@ class StopRepository(private val context: Context) {
             .take(maxResults)
     }
 
+    suspend fun getAllStops(): List<Stop> = withContext(Dispatchers.Default) {
+        (getStops() ?: emptyList()).sortedBy { it.name }
+    }
+
+    suspend fun getAllLines(): List<String> = withContext(Dispatchers.Default) {
+        val stops = getStops() ?: return@withContext emptyList()
+        stops.flatMap { it.lines }.distinct().sortedWith(compareBy { lineSortKey(it) })
+    }
+
+    private fun lineSortKey(name: String): String {
+        val prefix = when {
+            name.matches(Regex("U\\d")) -> "0$name"
+            name == "WLB"              -> "1WLB"
+            name.matches(Regex("[A-Z]")) || name.matches(Regex("\\d{1,2}")) -> "2$name".padEnd(5)
+            name.startsWith("S")       -> "3$name"
+            name.startsWith("N")       -> "5$name"
+            else                       -> "4$name"
+        }
+        return prefix
+    }
+
     data class Stats(val stopCount: Int, val lineCount: Int)
 
     suspend fun getStats(): Stats? = withContext(Dispatchers.Default) {

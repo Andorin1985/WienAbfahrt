@@ -10,6 +10,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 sealed class StopIdMode {
@@ -68,6 +71,44 @@ class StopIdViewModel(application: Application) : AndroidViewModel(application) 
         _mode.value = StopIdMode.Text
         _isGpsLoading.value = false
     }
+
+    // ── Stops list sheet ──────────────────────────────────────────────────────
+
+    private val _allStops = MutableStateFlow<List<Stop>>(emptyList())
+    private val _stopsQuery = MutableStateFlow("")
+    val stopsQuery: StateFlow<String> = _stopsQuery.asStateFlow()
+
+    val filteredStops: StateFlow<List<Stop>> = combine(_allStops, _stopsQuery) { stops, q ->
+        if (q.isBlank()) stops
+        else stops.filter {
+            it.name.contains(q, ignoreCase = true) || it.stopId.startsWith(q)
+        }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    fun loadAllStops() {
+        if (_allStops.value.isNotEmpty()) return
+        viewModelScope.launch { _allStops.value = stopRepo.getAllStops() }
+    }
+
+    fun onStopsQueryChanged(value: String) { _stopsQuery.value = value }
+
+    // ── Lines list sheet ──────────────────────────────────────────────────────
+
+    private val _allLines = MutableStateFlow<List<String>>(emptyList())
+    private val _linesQuery = MutableStateFlow("")
+    val linesQuery: StateFlow<String> = _linesQuery.asStateFlow()
+
+    val filteredLines: StateFlow<List<String>> = combine(_allLines, _linesQuery) { lines, q ->
+        if (q.isBlank()) lines
+        else lines.filter { it.contains(q, ignoreCase = true) }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    fun loadAllLines() {
+        if (_allLines.value.isNotEmpty()) return
+        viewModelScope.launch { _allLines.value = stopRepo.getAllLines() }
+    }
+
+    fun onLinesQueryChanged(value: String) { _linesQuery.value = value }
 
     override fun onCleared() {
         super.onCleared()

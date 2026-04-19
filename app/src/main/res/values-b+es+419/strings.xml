@@ -70,4 +70,10 @@
     <string name="stop_id_no_results">No se encontraron paradas.</string>
     <string name="stop_id_distance_m">%1$d m</string>
     <string name="stop_id_copied">ID de parada %1$s copiada</string>
+    <string name="sheet_stops_title">Todas las paradas</string>
+    <string name="sheet_stops_search_hint">Buscar una parada …</string>
+    <string name="sheet_stops_count">%1$d paradas</string>
+    <string name="sheet_lines_title">Todas las líneas</string>
+    <string name="sheet_lines_search_hint">Buscar una línea …</string>
+    <string name="sheet_lines_count">%1$d líneas</string>
 </resources>

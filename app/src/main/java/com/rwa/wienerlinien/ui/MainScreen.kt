@@ -153,7 +153,12 @@ fun MainScreen(vm: DepartureViewModel = viewModel()) {
                     onStopSelected = { selectedTab = AppTab.Abfahrt }
                 )
                 AppTab.Stoerungen -> StoerungenScreen()
-                AppTab.Info       -> InfoScreen()
+                AppTab.Info       -> InfoScreen(
+                    onNavigateToStop = { stopId ->
+                        vm.navigateToStop(stopId)
+                        selectedTab = AppTab.Abfahrt
+                    }
+                )
             }
         }
     }

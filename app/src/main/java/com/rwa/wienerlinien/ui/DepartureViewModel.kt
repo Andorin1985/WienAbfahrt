@@ -195,6 +195,14 @@ class DepartureViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch { departureRepo.setThemeMode(mode) }
     }
 
+    fun navigateToStop(stopId: String) {
+        _stopIdInput.value = stopId
+        _searchResults.value = emptyList()
+        _gpsState.value = GpsState.Idle
+        viewModelScope.launch { departureRepo.saveStopId(stopId) }
+        startPolling(stopId)
+    }
+
     fun onFavoriteClicked(favorite: Favorite) {
         _stopIdInput.value = favorite.stopId
         _searchResults.value = emptyList()

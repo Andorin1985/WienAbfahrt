@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,8 +27,10 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
 @Composable
-fun InfoScreen(vm: DepartureViewModel = viewModel()) {
+fun InfoScreen(vm: DepartureViewModel = viewModel(), onNavigateToStop: ((String) -> Unit)? = null) {
     var showLookup  by remember { mutableStateOf(false) }
+    var showStops   by remember { mutableStateOf(false) }
+    var showLines   by remember { mutableStateOf(false) }
     val context     = LocalContext.current
     val stopStats   by vm.stopStats.collectAsState()
     val versionName = remember {
@@ -164,12 +166,14 @@ fun InfoScreen(vm: DepartureViewModel = viewModel()) {
                 StatCard(
                     label = stringResource(R.string.info_stats_stops),
                     value = stopStats!!.stopCount.toString(),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    onClick = { showStops = true }
                 )
                 StatCard(
                     label = stringResource(R.string.info_stats_lines),
                     value = stopStats!!.lineCount.toString(),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    onClick = { showLines = true }
                 )
             }
         }
@@ -204,7 +208,7 @@ fun InfoScreen(vm: DepartureViewModel = viewModel()) {
                     )
                 }
                 Icon(
-                    Icons.Outlined.KeyboardArrowRight,
+                    Icons.AutoMirrored.Outlined.KeyboardArrowRight,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -221,17 +225,18 @@ fun InfoScreen(vm: DepartureViewModel = viewModel()) {
         )
     }
 
-    if (showLookup) {
-        StopIdLookupSheet(onDismiss = { showLookup = false })
-    }
+    if (showLookup) StopIdLookupSheet(onDismiss = { showLookup = false })
+    if (showStops)  StopsListSheet(onDismiss = { showStops = false }, onNavigateToStop = onNavigateToStop)
+    if (showLines)  LinesListSheet(onDismiss = { showLines = false })
 }
 
 @Composable
-private fun StatCard(label: String, value: String, modifier: Modifier = Modifier) {
+private fun StatCard(label: String, value: String, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
     Surface(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-        shape = MaterialTheme.shapes.medium
+        shape = MaterialTheme.shapes.medium,
+        onClick = onClick ?: {}
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),

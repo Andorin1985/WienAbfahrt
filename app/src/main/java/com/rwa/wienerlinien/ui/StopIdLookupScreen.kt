@@ -260,7 +260,7 @@ private fun triggerNearbyLookup(
                 else vm.clearResults()
             }
             .addOnFailureListener { vm.clearResults() }
-    } catch (e: SecurityException) {
+    } catch (_: SecurityException) {
         vm.clearResults()
     }
 }
